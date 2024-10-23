@@ -27,6 +27,7 @@ const App = () => {
                 },
             ]);
         }
+        dispatch(getProfile());
     }, [winner, dispatch]);
 
     const handleMove = (row: number, col: number) => {
@@ -36,7 +37,7 @@ const App = () => {
         }
 
         dispatch(makeMove({ row, col, player: currentPlayer }));
-        dispatch(getProfile());
+     
     };
     const handleLogout = () => {
         dispatch(logout())
@@ -70,7 +71,7 @@ const App = () => {
             </View>
 
             {status === 'loading' && <Text>Loading...</Text>}
-            {winner && <Text style={styles.winnerText}>Winner: {winner}</Text>}
+           
 
             {/* Stats Cards */}
             <View style={styles.statsContainer}>

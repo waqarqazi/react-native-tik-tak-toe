@@ -1,31 +1,25 @@
 /* eslint-disable */
 import React, { useState } from 'react'
-import { View, Text, Alert } from 'react-native'
+import { View, Text } from 'react-native'
 import { useTheme } from 'styled-components'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { showMessage } from 'react-native-flash-message'
 import Icon from 'react-native-vector-icons/Ionicons'
 import makeStyles from './styles'
 import globalStyles from '@styles/globalStyles'
 import CustomButton from '@components/button/button-with-border'
-import HeaderBasic from '@components/header-basic'
-import { ActivityIndicator, InputWithLabel, PhoneNumber } from '@components/index'
-import { Logo } from '@assets/svgs'
+import { ActivityIndicator, InputWithLabel } from '@components/index'
 import { login } from '@store/authSlice'
 import SCREENS from '@navigation/constants'
 import { widthPercentageToDP } from 'react-native-responsive-screen'
 import Config from 'react-native-config'
 import { AppDispatch } from 'src/types'
 
-const SignInWithPhone = ({navigation}) => {
+const Login = ({navigation}) => {
   const colors = useTheme()
   const styles = makeStyles(colors)
   const stylesGlobal = globalStyles(colors)
 
-  const [countryCode, setCountryCode] = useState('MY')
-  const [phoneNumber, setPhoneNumber] = useState('')
-  const [selectCountryCode, setSelectCountryCode] = useState('92')
-  const [numberCondition] = useState({ min: 8, max: 11 })
   const [hidePassword, setHidePassword] = useState(true)
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
@@ -33,7 +27,7 @@ const SignInWithPhone = ({navigation}) => {
 
   const dispatch = useDispatch<AppDispatch>()
   const onSubmit = async () => {
-
+    setIsLoading(true);
     dispatch(
       login({
         email: email,
@@ -42,10 +36,11 @@ const SignInWithPhone = ({navigation}) => {
     )
       .unwrap()
       .then(async (data) => {
-
+        setIsLoading(false);
       })
       .catch((err) => {
         console.log('err', err)
+        setIsLoading(false);
         showMessage({
           message: "Invalid credentials",
           type: 'danger',
@@ -126,4 +121,4 @@ const onNavigateRegister=()=>{
   )
 }
 
-export default SignInWithPhone
+export default Login

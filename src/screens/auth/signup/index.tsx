@@ -9,9 +9,6 @@ import { NAME } from '@utils/regix'
 import { Formik } from 'formik'
 import { Button } from '@components/button'
 import ActivityIndicator from '@components/loader'
-import DatePickerModal from '@components/date-picker-modal'
-import { TouchableOpacity } from 'react-native'
-import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { useTheme } from 'styled-components'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { useDispatch } from 'react-redux'
@@ -23,9 +20,6 @@ const SignUp = ({ route }) => {
   const colors = useTheme()
   const styles = makeStyles()
   const [isLoading, setIsLoading] = useState(false)
-  const [dateDob, setDateDob] = useState()
-  const [isPickerShow, setIsPickerShow] = useState(false)
-  const [gender, setGender] = useState('')
   const [hidePassword, setHidePassword] = useState(true)
  
 
@@ -70,7 +64,7 @@ const SignUp = ({ route }) => {
       <ActivityIndicator visible={isLoading} />
       <ScrollView style={styles.container}>
         <View style={styles.containerView}>
-          <HeaderBasic title="Create Profile" />
+          <HeaderBasic title="Register" back={true}/>
           <Formik
            initialValues={{
             firstName: '',

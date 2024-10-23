@@ -1,7 +1,7 @@
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import SCREENS from './constants'
-import SignInWithPhone from '@screens/auth/signin-with-phone'
+import Login from '@screens/auth/login'
 import SignUp from '@screens/auth/signup'
 
 
@@ -16,7 +16,7 @@ const AuthNavigator = () => (
     
     <Stack.Screen
       name={SCREENS.LOGIN}
-      component={SignInWithPhone}
+      component={Login}
     />
       <Stack.Screen name={SCREENS.SIGNUP} component={SignUp} />
   </Stack.Navigator>

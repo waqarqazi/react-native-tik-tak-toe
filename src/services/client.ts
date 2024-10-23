@@ -1,9 +1,9 @@
 import store from '@store/store'
 import axios from 'axios'
+import Config from 'react-native-config'
 
 const client = axios.create({
-  //baseURL: `${Config.BASE_URL}/api`,
-  baseURL: 'http://192.168.1.23:3000/api',
+  baseURL: `${Config.BASE_URL}/api`,
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json',
@@ -16,13 +16,7 @@ const onSuccess = function (response: any) {
 }
 
 const onError = function (error: any) {
-  //   console.error('Request Failed:', error.config);
   if (error.response) {
-    // Request was made but server responded with something
-    // other than 2xx
-    // console.error('Status:', error.response.status);
-    // console.error('Data:', error.response.data);
-    // console.error('Headers:', error.response.headers);
   }
   return Promise.reject({
     errMsg: !error?.response ? 'Network Issue!' : error?.response?.data,
